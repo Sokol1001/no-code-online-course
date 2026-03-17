@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קורס כלי No-Code | ArtificialGate</title>
+    <meta name="description" content="קורס כלי No-Code של ArtificialGate - הפכו רעיונות למוצרים עובדים תוך שעות. Claude Code, Lovable, Antigravity, Base44.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-deep: #070b1f;
+            --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.07);
+            --primary: #6b8cff;
+            --primary-light: #7ca2ff;
+            --primary-dark: #5f83ff;
+            --accent-green: #7effb2;
+            --accent-purple: #89a2ff;
+            --text-white: #ffffff;
+            --text-light: #e7ecff;
+            --text-muted: #cfd7ff;
+            --text-dim: #aeb9f5;
+            --border-subtle: rgba(255,255,255,0.08);
+            --border-light: rgba(255,255,255,0.12);
+            --gradient-primary: linear-gradient(135deg, #5f83ff, #7ca2ff);
+            --gradient-hero: radial-gradient(ellipse at 50% 0%, rgba(107,140,255,0.15) 0%, transparent 60%);
+            --shadow-glow: 0 0 30px rgba(107,140,255,0.35);
+            --shadow-card: 0 20px 60px rgba(0,0,0,0.35);
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --font: 'Noto Sans Hebrew', Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-deep);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            direction: rtl;
+        }
+
+        /* ===== BACKGROUND EFFECTS ===== */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(120,140,255,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(120,140,255,0.06) 1px, transparent 1px);
+            background-size: 56px 56px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        #particles-container {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(120,160,255,0.7);
+            box-shadow: 0 0 12px rgba(120,160,255,0.8);
+            animation: rise linear infinite;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(100vh) scale(1); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(0.5); opacity: 0; }
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 100;
+            padding: 16px 0;
+            background: rgba(7,11,31,0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: background 0.3s;
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-wrapper {
+            background: #fff;
+            border-radius: 40px;
+            padding: 6px 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-wrapper img {
+            height: 56px;
+            width: auto;
+            display: block;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .header-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .header-nav a:hover {
+            color: var(--primary-light);
+        }
+
+        .btn-header {
+            background: var(--gradient-primary);
+            color: #fff !important;
+            padding: 10px 22px;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: var(--shadow-glow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(107,140,255,0.5);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 160px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(ellipse, rgba(107,140,255,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(107,140,255,0.12);
+            border: 1px solid rgba(107,140,255,0.25);
+            border-radius: 40px;
+            padding: 8px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 28px;
+            backdrop-filter: blur(8px);
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--text-white);
+        }
+
+        .hero h1 .accent {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: clamp(18px, 2.5vw, 22px);
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .meta-pill {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 40px;
+            padding: 10px 24px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-muted);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .meta-pill .icon {
+            font-size: 18px;
+        }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: var(--radius-md);
+            font-size: 18px;
+            font-weight: 700;
+            font-family: var(--font);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-glow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 50px rgba(107,140,255,0.5);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            color: var(--text-light);
+            padding: 16px 36px;
+            border-radius: var(--radius-md);
+            font-size: 18px;
+            font-weight: 700;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(8px);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            background: var(--bg-card-hover);
+        }
+
+        /* ===== TARGET AUDIENCE BANNER ===== */
+        .audience-banner {
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .audience-card {
+            background: linear-gradient(135deg, rgba(107,140,255,0.08), rgba(126,255,178,0.05));
+            border: 1px solid rgba(107,140,255,0.15);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .audience-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(126,255,178,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .audience-card h2 {
+            font-size: clamp(24px, 4vw, 36px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-white);
+        }
+
+        .audience-card h2 .green {
+            color: var(--accent-green);
+        }
+
+        .audience-card p {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .audience-card .quote {
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 700;
+            color: var(--text-white);
+            margin: 32px auto 0;
+            max-width: 750px;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .audience-card .quote::before {
+            content: '״';
+            font-size: 60px;
+            color: var(--primary);
+            position: absolute;
+            top: -20px;
+            right: -30px;
+            opacity: 0.3;
+        }
+
+        /* ===== TOOLS SECTION ===== */
+        .tools-section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(107,140,255,0.1);
+            border: 1px solid rgba(107,140,255,0.2);
+            border-radius: 40px;
+            padding: 6px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            color: var(--text-white);
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 36px 24px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s, background 0.3s;
+            backdrop-filter: blur(8px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(107,140,255,0.25);
+            background: var(--bg-card-hover);
+        }
+
+        .tool-card:hover::before {
+            opacity: 1;
+        }
+
+        .tool-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 800;
+        }
+
+        .tool-icon.claude { background: linear-gradient(135deg, #d4a574, #c4956a); }
+        .tool-icon.lovable { background: linear-gradient(135deg, #ff6b8a, #ff4772); }
+        .tool-icon.antigravity { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+        .tool-icon.base44 { background: linear-gradient(135deg, #22d3ee, #06b6d4); }
+
+        .tool-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 10px;
+        }
+
+        .tool-card p {
+            font-size: 15px;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        /* ===== BENEFITS SECTION ===== */
+        .benefits-section {
+            padding: 80px 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .benefit-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            transition: transform 0.3s, border-color 0.3s;
+            backdrop-filter: blur(8px);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(107,140,255,0.2);
+        }
+
+        .benefit-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: rgba(107,140,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 18px;
+        }
+
+        .benefit-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 8px;
+        }
+
+        .benefit-card p {
+            font-size: 15px;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        /* ===== SYLLABUS SECTION ===== */
+        .syllabus-section {
+            padding: 80px 0;
+        }
+
+        .syllabus-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .syllabus-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 24px;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), rgba(107,140,255,0.1));
+        }
+
+        .syllabus-item {
+            padding: 0 60px 48px 0;
+            position: relative;
+        }
+
+        .syllabus-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .syllabus-dot {
+            position: absolute;
+            top: 6px;
+            right: 15px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            box-shadow: 0 0 20px rgba(107,140,255,0.4);
+        }
+
+        .syllabus-item .session-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .syllabus-item h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 12px;
+        }
+
+        .syllabus-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .syllabus-item ul li {
+            font-size: 16px;
+            color: var(--text-muted);
+            padding: 6px 0;
+            padding-right: 24px;
+            position: relative;
+        }
+
+        .syllabus-item ul li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        /* ===== TEAM SECTION ===== */
+        .team-section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .team-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 15% 50%, rgba(107,140,255,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 50%, rgba(126,255,178,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 36px 28px;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(107,140,255,0.2);
+        }
+
+        .team-card.lead {
+            border-color: rgba(107,140,255,0.2);
+            background: rgba(107,140,255,0.05);
+        }
+
+        .team-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            margin: 0 auto 20px;
+            display: block;
+            border: 3px solid rgba(107,140,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .team-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 4px;
+        }
+
+        .team-role {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .team-card p {
+            font-size: 14px;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        /* ===== LEAD FORM SECTION ===== */
+        .form-section {
+            padding: 80px 0 100px;
+        }
+
+        .form-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .form-content h2 {
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 800;
+            color: var(--text-white);
+            margin-bottom: 16px;
+        }
+
+        .form-content p {
+            font-size: 18px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .form-highlights {
+            list-style: none;
+            padding: 0;
+        }
+
+        .form-highlights li {
+            font-size: 16px;
+            color: var(--text-muted);
+            padding: 8px 0;
+            padding-right: 28px;
+            position: relative;
+        }
+
+        .form-highlights li::before {
+            content: '⚡';
+            position: absolute;
+            right: 0;
+            font-size: 16px;
+        }
+
+        .form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .form-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .form-card .form-sub {
+            font-size: 15px;
+            color: var(--text-dim);
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            color: var(--text-white);
+            font-family: var(--font);
+            font-size: 16px;
+            transition: border-color 0.2s, background 0.2s;
+            direction: rtl;
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-dim);
+            opacity: 0.6;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(107,140,255,0.06);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient-primary);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font);
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: var(--shadow-glow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 8px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 50px rgba(107,140,255,0.5);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .form-status {
+            text-align: center;
+            margin-top: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            min-height: 24px;
+        }
+
+        .form-status.success { color: var(--accent-green); }
+        .form-status.error { color: #ff9c9c; }
+
+        /* ===== WHY ARTIFICIALGATE ===== */
+        .why-section {
+            padding: 80px 0;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .why-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s;
+        }
+
+        .why-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .why-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .why-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 10px;
+        }
+
+        .why-card p {
+            font-size: 15px;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #050816;
+            border-top: 1px solid var(--border-subtle);
+            padding: 60px 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .logo-wrapper {
+            margin-bottom: 16px;
+            display: inline-flex;
+        }
+
+        .footer-brand p {
+            font-size: 15px;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        .footer h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 18px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.2s;
+            opacity: 0.85;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-dim);
+            opacity: 0.7;
+        }
+
+        /* ===== WHATSAPP FLOAT ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            z-index: 99;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37,211,102,0.5);
+        }
+
+        .whatsapp-float svg {
+            width: 32px;
+            height: 32px;
+            fill: #fff;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 960px) {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+            }
+
+            .form-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .audience-card {
+                padding: 32px 20px;
+            }
+
+            .audience-card .quote::before {
+                display: none;
+            }
+
+            .header-nav span.hide-mobile {
+                display: none;
+            }
+        }
+
+        /* ===== FLOATING ANIMATION ===== */
+        @keyframes floatBg {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-40px); }
+        }
+
+        .float-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(107,140,255,0.04);
+            animation: floatBg 14s ease-in-out infinite;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Background Effects -->
+<div class="bg-grid"></div>
+<div id="particles-container"></div>
+
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="logo-wrapper">
+            <img src="images/artificialgate.jpg" alt="ArtificialGate">
+        </div>
+        <nav class="header-nav">
+            <a href="#tools" class="hide-mobile">הכלים</a>
+            <a href="#syllabus" class="hide-mobile">סילבוס</a>
+            <a href="#team" class="hide-mobile">הצוות</a>
+            <a href="#lead-form" class="btn-header">הרשמה לקורס</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-badge">🚀 קורס No-Code של ArtificialGate</div>
+        <h1>
+            הפכו רעיונות ל<span class="accent">מוצרים עובדים</span><br>
+            תוך שעות בודדות
+        </h1>
+        <p class="hero-sub">
+            למדו לבנות אפליקציות, אתרים וכלים דיגיטליים — בלי לכתוב שורת קוד אחת.
+            עם הכלים המתקדמים ביותר בעולם ה-No-Code וה-AI.
+        </p>
+        <div class="hero-meta">
+            <div class="meta-pill">
+                <span class="icon">📅</span>
+                <span>4 מפגשים אונליין</span>
+            </div>
+            <div class="meta-pill">
+                <span class="icon">⏱️</span>
+                <span>3 שעות כל מפגש</span>
+            </div>
+            <div class="meta-pill">
+                <span class="icon">💡</span>
+                <span>יישומי, מעשי, עדכני</span>
+            </div>
+        </div>
+        <div class="hero-cta">
+            <a href="#lead-form" class="btn-primary">הרשמה לקורס ←</a>
+            <a href="#syllabus" class="btn-secondary">צפייה בסילבוס</a>
+        </div>
+    </div>
+</section>
+
+<!-- Target Audience Banner -->
+<section class="audience-banner">
+    <div class="container">
+        <div class="audience-card">
+            <h2>מיועד לאנשי <span class="green">HR</span>, מנהלי פרויקטים ובעלי תפקידים עסקיים</h2>
+            <p>
+                לא צריך רקע טכני. הקורס תוכנן במיוחד עבור אנשי מקצוע שרוצים להפסיק לחכות לצוות הפיתוח — ולהתחיל לבנות בעצמם.
+            </p>
+            <div class="quote">
+                תהפכו את הרעיון שלכם למוצר עובד תוך שעות — ותציגו אותו למנהל הישיר שלכם כבר מחר
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tools Section -->
+<section class="tools-section" id="tools">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">הכלים שנלמד</span>
+            <h2>ארגז הכלים של יוצרים ב-2026</h2>
+            <p>ארבעה כלי No-Code מובילים שישנו את הדרך שבה אתם עובדים</p>
+        </div>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon claude">⚡</div>
+                <h3>Claude Code</h3>
+                <p>סוכן AI לכתיבת קוד אוטומטית. תתארו מה אתם רוצים — והוא יבנה את זה בשבילכם. אפליקציות שלמות, סקריפטים ואוטומציות.</p>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon lovable">♥</div>
+                <h3>Lovable</h3>
+                <p>בנו אפליקציות ואתרים מלאים באמצעות שיחה טבעית. עיצוב, לוגיקה ובסיס נתונים — הכל מתוך תיאור אחד.</p>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon antigravity">◆</div>
+                <h3>Antigravity</h3>
+                <p>פלטפורמה ליצירת מוצרים דיגיטליים מורכבים ללא קוד. מושלם לאנשי עסקים שרוצים לבנות פתרונות מותאמים.</p>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon base44">▣</div>
+                <h3>Base44</h3>
+                <p>כלי ישראלי לבניית אפליקציות עסקיות מקצה לקצה. ניהול נתונים, תהליכים ואוטומציות — בממשק פשוט ואינטואיטיבי.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="benefits-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">מה תרוויחו מהקורס</span>
+            <h2>מיומנויות שישנו את הקריירה שלכם</h2>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🧩</div>
+                <h3>עצמאות טכנולוגית</h3>
+                <p>תפסיקו לחכות לצוות הפיתוח. תבנו פתרונות ופרוטוטייפים בעצמכם תוך שעות.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>מהירות ביצוע</h3>
+                <p>מרעיון למוצר עובד ביום אחד. חסכו שבועות של תקשורת והמתנה לפיתוח.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🎯</div>
+                <h3>יתרון תחרותי</h3>
+                <p>אנשי HR שיודעים לבנות כלים דיגיטליים הם הנכס הכי מבוקש בשוק העבודה של 2026.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🤖</div>
+                <h3>שליטה בכלי AI</h3>
+                <p>תלמדו להשתמש ב-AI כשותף עבודה — לא רק לשאול שאלות, אלא לבנות מוצרים שלמים.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💼</div>
+                <h3>השפעה ארגונית</h3>
+                <p>תגיעו לפגישות עם פרוטוטייפ עובד במקום מצגת. זה משנה את כל השיחה.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📈</div>
+                <h3>התפתחות מקצועית</h3>
+                <p>הוסיפו מיומנויות No-Code ו-AI לקורות החיים — התחום החם ביותר בשוק.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Syllabus Section -->
+<section class="syllabus-section" id="syllabus">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">סילבוס הקורס</span>
+            <h2>מה נלמד בכל מפגש?</h2>
+            <p>מסלול מובנה שלוקח אתכם מאפס ועד מוצר עובד</p>
+        </div>
+        <div class="syllabus-timeline">
+            <div class="syllabus-item">
+                <div class="syllabus-dot"></div>
+                <div class="session-label">מפגש 1</div>
+                <h3>היכרות עם עולם ה-No-Code וכלי AI</h3>
+                <ul>
+                    <li>מהפכת ה-No-Code — למה עכשיו ולמה זה רלוונטי לכם</li>
+                    <li>סקירת כלים ובחירת הכלי הנכון לכל משימה</li>
+                    <li>עבודה מעשית ראשונה עם Claude Code</li>
+                    <li>בניית אוטומציה פשוטה מאפס</li>
+                </ul>
+            </div>
+            <div class="syllabus-item">
+                <div class="syllabus-dot"></div>
+                <div class="session-label">מפגש 2</div>
+                <h3>בניית אפליקציות ואתרים עם Lovable ו-Base44</h3>
+                <ul>
+                    <li>יצירת אפליקציה עסקית מלאה עם Lovable</li>
+                    <li>ניהול נתונים ותהליכים עם Base44</li>
+                    <li>חיבור בין כלים ויצירת מערכת משולבת</li>
+                    <li>עבודה על פרויקט אישי — מרעיון לפרוטוטייפ</li>
+                </ul>
+            </div>
+            <div class="syllabus-item">
+                <div class="syllabus-dot"></div>
+                <div class="session-label">מפגש 3</div>
+                <h3>Antigravity ופתרונות מורכבים</h3>
+                <ul>
+                    <li>בניית מוצרים דיגיטליים מתקדמים עם Antigravity</li>
+                    <li>שילוב AI בתהליכי עבודה ארגוניים</li>
+                    <li>אסטרטגיות הטמעה בארגון</li>
+                    <li>טיפים ושיטות עבודה מהשטח</li>
+                </ul>
+            </div>
+            <div class="syllabus-item">
+                <div class="syllabus-dot"></div>
+                <div class="session-label">מפגש 4</div>
+                <h3>פרויקט סיום והצגה</h3>
+                <ul>
+                    <li>סיום הפרויקט האישי — מוצר עובד ומלא</li>
+                    <li>הצגת הפרויקטים בפני הקבוצה</li>
+                    <li>פידבק מקצועי מצוות ההדרכה</li>
+                    <li>תוכנית פעולה אישית להמשך — מה עושים ביום שאחרי</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="team-section" id="team">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">הצוות שלנו</span>
+            <h2>מובילי הקורס</h2>
+            <p>שילוב של עומק אקדמי, ניסיון תעשייתי וליווי אישי</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card lead">
+                <img src="images/Barak.png" alt="ד״ר ברק אור" class="team-photo">
+                <h3>ד״ר ברק אור</h3>
+                <span class="team-role">מוביל הקורס | מייסד ArtificialGate</span>
+                <p>שלוש תארים מהטכניון, דוקטורט בלמידת מכונה. מרצה בטכניון ומנהל תוכנית AI בגוגל-רייכמן. מוביל פרויקטי AI בתעשייה ובביטחון.</p>
+            </div>
+            <div class="team-card lead">
+                <img src="images/markimg.jpeg" alt="מארק מליקוב" class="team-photo">
+                <h3>מארק מליקוב</h3>
+                <span class="team-role">מוביל הקורס | מהנדס למידת מכונה</span>
+                <p>מהנדס למידת מכונה ב-ArtificialGate. מומחה ביישום כלי AI וטכנולוגיות No-Code ליצירת פתרונות עסקיים מתקדמים.</p>
+            </div>
+            <div class="team-card">
+                <img src="images/Veronica.png" alt="ורוניקה" class="team-photo">
+                <h3>ורוניקה</h3>
+                <span class="team-role">מנהלת התוכנית</span>
+                <p>אחראית על הליווי האישי שלכם לאורך הקורס. תיאום, תמיכה וסיוע — מההרשמה ועד הסיום.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why ArtificialGate -->
+<section class="why-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">למה ArtificialGate?</span>
+            <h2>האקדמיה לבינה מלאכותית</h2>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <span class="why-icon">🎓</span>
+                <h3>עומק אקדמי</h3>
+                <p>מבוסס על מחקר אקדמי ושנים של הוראה. לא רק טיפים — הבנה אמיתית של הטכנולוגיה.</p>
+            </div>
+            <div class="why-card">
+                <span class="why-icon">🔧</span>
+                <h3>שימוש מעשי</h3>
+                <p>כל מה שנלמד ניתן ליישום מיידי. תצאו מכל מפגש עם כלים ותוצרים שאפשר להשתמש בהם מחר בבוקר.</p>
+            </div>
+            <div class="why-card">
+                <span class="why-icon">🔄</span>
+                <h3>עדכניות 2026</h3>
+                <p>הכלים הכי חדשים, השיטות הכי מתקדמות. תוכן שמתעדכן בזמן אמת עם התפתחות התחום.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Lead Form Section -->
+<section class="form-section" id="lead-form">
+    <div class="container">
+        <div class="form-wrapper">
+            <div class="form-content">
+                <h2>מוכנים להתחיל לבנות?</h2>
+                <p>
+                    השאירו פרטים ונחזור אליכם עם כל המידע על הקורס הקרוב — מועדים, מחיר והטבות מיוחדות לנרשמים מוקדם.
+                </p>
+                <ul class="form-highlights">
+                    <li>קבוצות קטנות — תשומת לב אישית</li>
+                    <li>הקלטות של כל המפגשים</li>
+                    <li>גישה לקהילת בוגרים ותמיכה לאחר הקורס</li>
+                    <li>תעודת סיום מ-ArtificialGate</li>
+                </ul>
+            </div>
+            <div class="form-card">
+                <h3>השארת פרטים</h3>
+                <p class="form-sub">נחזור אליכם תוך 24 שעות</p>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="fullName">שם מלא</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="השם המלא שלכם" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">דוא״ל</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" dir="ltr" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">טלפון</label>
+                        <input type="tel" id="phone" name="phone" placeholder="050-000-0000" dir="ltr" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">תפקיד</label>
+                        <select id="role" name="role">
+                            <option value="">בחרו תפקיד</option>
+                            <option value="hr">משאבי אנוש / HR</option>
+                            <option value="pm">ניהול פרויקטים</option>
+                            <option value="manager">ניהול / תפעול</option>
+                            <option value="business">בעל/ת עסק</option>
+                            <option value="other">אחר</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="form-submit">שלחו פרטים ←</button>
+                    <div class="form-status" id="formStatus"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo-wrapper">
+                    <span class="logo-text">ArtificialGate</span>
+                </div>
+                <p>האקדמיה לבינה מלאכותית. הכשרות מקצועיות לארגונים, חוקרים ומהנדסים.</p>
+            </div>
+            <div>
+                <h4>יצירת קשר</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@artificialgate.ai">info@artificialgate.ai</a></li>
+                    <li><a href="https://artificialgate.ai" target="_blank">artificialgate.ai</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>מידע</h4>
+                <ul class="footer-links">
+                    <li><a href="#">תנאי שימוש</a></li>
+                    <li><a href="#">מדיניות פרטיות</a></li>
+                    <li><a href="#">צרו קשר</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 ArtificialGate Ltd. כל הזכויות שמורות.
+        </div>
+    </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+</a>
+
+<!-- Particles Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('particles-container');
+        const particleCount = 35;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            const size = Math.random() * 4 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 12 + 8) + 's';
+            particle.style.animationDelay = (Math.random() * 8) + 's';
+            particle.style.opacity = Math.random() * 0.5 + 0.3;
+            container.appendChild(particle);
+        }
+
+        // Form handling
+        const form = document.getElementById('contactForm');
+        const status = document.getElementById('formStatus');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = form.querySelector('.form-submit');
+            btn.disabled = true;
+            btn.textContent = 'שולח...';
+
+            // Simulate form submission
+            setTimeout(function() {
+                status.className = 'form-status success';
+                status.textContent = 'הפרטים נשלחו בהצלחה! נחזור אליכם בהקדם.';
+                btn.disabled = false;
+                btn.textContent = 'שלחו פרטים ←';
+                form.reset();
+            }, 1500);
+        });
+
+        // Header scroll effect
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(7,11,31,0.95)';
+            } else {
+                header.style.background = 'rgba(7,11,31,0.85)';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
